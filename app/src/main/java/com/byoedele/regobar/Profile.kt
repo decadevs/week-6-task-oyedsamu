@@ -15,6 +15,7 @@ class Profile : AppCompatActivity() {
         val phoneNo = bundle!!.getString("phoneNum")
         val sex = bundle!!.getString("sex")
 
+        // This part sets the text of the
         n1name.text = "Name: $name"
         emailnew.text = "Email: $email"
         phoneNumNew.text = "Phone Number: $phoneNo"

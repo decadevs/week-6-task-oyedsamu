@@ -17,46 +17,42 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         validate()
-
-
-
     }
-    fun validate(){
-        // On the Registration button, an onclick listener is set to perform necessary validations first.
-        // All fields are checked if they are not empty
-        // The phone number is validated to be nigerian
-        // The email address is validated to be of correct format
+
+    fun validate() {
+        /** On the Registration button, an onclick listener is set to perform necessary validations first.
+        * All fields are checked if they are not empty
+        * the phone number is validated to be nigerian
+         * The email address is validated to be of correct format
+        */
         reg_button.setOnClickListener {
             val nameField = findViewById<EditText>(R.id.name).text.toString().trim()
             val emailField = findViewById<EditText>(R.id.emailad).text.toString().trim()
             val phoneNumField = findViewById<EditText>(R.id.phoneNum).text.toString().trim()
             val sex = findViewById<Spinner>(R.id.spinner).selectedItem.toString()
-            val regButton: Button = findViewById(R.id.reg_button)
-
-            var proceedReg = false  // proceedReg is an boolean value to check if validation has been completed and registration can proceed.
 
             if (checkEmpty(nameField) ||
                 checkEmpty(emailField) ||
-                checkEmpty(phoneNumField)){
+                checkEmpty(phoneNumField)
+            ) {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
-            } else if (!checkEmailField(emailField) && !checkPhoneNumField(phoneNumField)){
-                Toast.makeText(this, "Phone number and Email Address incorrect", Toast.LENGTH_SHORT).show()
+            } else if (!checkEmailField(emailField) && !checkPhoneNumField(phoneNumField)) {
+                Toast.makeText(this, "Phone number and Email Address incorrect", Toast.LENGTH_SHORT)
+                    .show()
                 return@setOnClickListener
-            } else if(checkEmailField(emailField) && !checkPhoneNumField(phoneNumField)) {
+            } else if (checkEmailField(emailField) && !checkPhoneNumField(phoneNumField)) {
                 Toast.makeText(this, "Phone number format incorrect", Toast.LENGTH_SHORT).show()
-                proceedReg = false
-                return@setOnClickListener
-            } else if(!checkEmailField(emailField) && checkPhoneNumField(phoneNumField)){
-                Toast.makeText(this, "Email address format incorrect", Toast.LENGTH_SHORT).show()
-                proceedReg = false
-                return@setOnClickListener
-            } else proceedReg = true
 
-            // If Validation passes all conditions, then proceedreg is true
-            // and is used to check then send the bundle to the profile Fragment
-            if(proceedReg){
-                // Toast.makeText(this, "Working Fine", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            } else if (!checkEmailField(emailField) && checkPhoneNumField(phoneNumField)) {
+                Toast.makeText(this, "Email address format incorrect", Toast.LENGTH_SHORT).show()
+
+                return@setOnClickListener
+            } else {
+
+                /** If Validation passes all conditions, then  is true then send the bundle to the profile Fragment
+                */
                 val intent = Intent(this, Profile::class.java)
                 intent.putExtra("name", nameField)
                 intent.putExtra("email", emailField)
@@ -67,7 +63,8 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-//    This is the function to check if a field is empty or not
+
+    //    This is the function to check if a field is empty or not
     fun checkEmpty(enteredValue: String): Boolean {
         return enteredValue.trim().isEmpty()
     }
@@ -82,14 +79,14 @@ class MainActivity : AppCompatActivity() {
     // The starting value is 234 or +234 or 0 for a valid Nigerian phone number. The length is checked for each instance.
 
     fun checkPhoneNumField(enteredPhoneNum: String): Boolean {
-        return if (!Pattern.matches("[a-zA-Z]+", enteredPhoneNum)){
-            if (enteredPhoneNum.length < 11){
+        return if (!Pattern.matches("[a-zA-Z]+", enteredPhoneNum)) {
+            if (enteredPhoneNum.length < 11) {
                 false
-            } else if (enteredPhoneNum.length> 11 && enteredPhoneNum.substring(0, 4)=="+234"){
-                enteredPhoneNum.length == 14 && (enteredPhoneNum[4]=='8' || enteredPhoneNum[4]=='7' || enteredPhoneNum[4]=='9')
-            } else if (enteredPhoneNum.length> 11 && enteredPhoneNum.substring(0, 3)=="234"){
-                enteredPhoneNum.length == 13 && (enteredPhoneNum[3]=='7' || enteredPhoneNum[3]=='8' || enteredPhoneNum[3]=='9')
-            } else enteredPhoneNum.first()=='0'
+            } else if (enteredPhoneNum.length > 11 && enteredPhoneNum.substring(0, 4) == "+234") {
+                enteredPhoneNum.length == 14 && (enteredPhoneNum[4] == '8' || enteredPhoneNum[4] == '7' || enteredPhoneNum[4] == '9')
+            } else if (enteredPhoneNum.length > 11 && enteredPhoneNum.substring(0, 3) == "234") {
+                enteredPhoneNum.length == 13 && (enteredPhoneNum[3] == '7' || enteredPhoneNum[3] == '8' || enteredPhoneNum[3] == '9')
+            } else enteredPhoneNum.first() == '0'
         } else false
     }
 }

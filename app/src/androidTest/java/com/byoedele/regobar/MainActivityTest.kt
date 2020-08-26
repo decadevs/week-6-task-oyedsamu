@@ -29,6 +29,4 @@ class MainActivityTest{
         onView(withId(R.id.phoneNum)).check(matches(isDisplayed()))
         onView(withId(R.id.emailad)).check(matches(isDisplayed()))
     }
-
-//
 }
