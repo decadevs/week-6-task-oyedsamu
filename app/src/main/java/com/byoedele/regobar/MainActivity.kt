@@ -86,9 +86,9 @@ class MainActivity : AppCompatActivity() {
             if (enteredPhoneNum.length < 11){
                 false
             } else if (enteredPhoneNum.length> 11 && enteredPhoneNum.substring(0, 4)=="+234"){
-                enteredPhoneNum.length == 14 && (enteredPhoneNum[4]=='8' || enteredPhoneNum[4]=='7')
+                enteredPhoneNum.length == 14 && (enteredPhoneNum[4]=='8' || enteredPhoneNum[4]=='7' || enteredPhoneNum[4]=='9')
             } else if (enteredPhoneNum.length> 11 && enteredPhoneNum.substring(0, 3)=="234"){
-                enteredPhoneNum.length == 13 && (enteredPhoneNum[3]=='7' || enteredPhoneNum[3]=='8')
+                enteredPhoneNum.length == 13 && (enteredPhoneNum[3]=='7' || enteredPhoneNum[3]=='8' || enteredPhoneNum[3]=='9')
             } else enteredPhoneNum.first()=='0'
         } else false
     }

@@ -73,6 +73,9 @@ class ValidationTests{
         assert(newOne.checkPhoneNumField("08145508029")).equals(true)
         assert(newOne.checkPhoneNumField("2348145508029")).equals(true)
         assert(newOne.checkPhoneNumField("+2348145508029")).equals(true)
+        assert(newOne.checkPhoneNumField("+2347045508029")).equals(true)
+        assert(newOne.checkPhoneNumField("+2348045508029")).equals(true)
+        assert(newOne.checkPhoneNumField("+2349045508029")).equals(true)
         assert(newOne.checkPhoneNumField("08162339425")).equals(true)
     }
 
